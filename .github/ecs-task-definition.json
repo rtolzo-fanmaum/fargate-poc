@@ -1,15 +1,15 @@
 {
-  "family": "vtt-worker",
+  "family": "subtitle-generator-worker",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "1024",
   "memory": "2048",
-  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::123456789012:role/vttWorkerTaskRole",
+  "executionRoleArn": "arn:aws:iam::525051404132:role/subtitle-generator-ecs-execution-role",
+  "taskRoleArn": "arn:aws:iam::525051404132:role/subtitle-generator-ecs-task-role",
   "containerDefinitions": [
     {
       "name": "worker",
-      "image": "123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/vtt-worker:latest",
+      "image": "525051404132.dkr.ecr.ap-northeast-2.amazonaws.com/subtitle-generator:latest",
       "essential": true,
       "environment": [
         {
@@ -18,19 +18,19 @@
         },
         {
           "name": "S3_BUCKET",
-          "value": "replace-with-your-input-bucket"
+          "value": "rtolzo-winspec"
         }
       ],
       "secrets": [
         {
           "name": "OPENAI_API_KEY",
-          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:123456789012:secret:openai-api-key"
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:533267392768:secret:winspec-subtitle-generator-open-api-key-HZTsOq"
         }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/vtt-worker",
+          "awslogs-group": "/ecs/subtitle-generator-worker",
           "awslogs-region": "ap-northeast-2",
           "awslogs-stream-prefix": "ecs"
         }
