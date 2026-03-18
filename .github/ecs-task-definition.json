@@ -1,0 +1,40 @@
+{
+  "family": "vtt-worker",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "2048",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::123456789012:role/vttWorkerTaskRole",
+  "containerDefinitions": [
+    {
+      "name": "worker",
+      "image": "123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/vtt-worker:latest",
+      "essential": true,
+      "environment": [
+        {
+          "name": "AWS_REGION",
+          "value": "ap-northeast-2"
+        },
+        {
+          "name": "S3_BUCKET",
+          "value": "replace-with-your-input-bucket"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "OPENAI_API_KEY",
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:123456789012:secret:openai-api-key"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/vtt-worker",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
