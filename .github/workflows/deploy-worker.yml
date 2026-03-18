@@ -14,7 +14,7 @@ env:
   AWS_REGION: ${{ vars.AWS_REGION }}
   ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
   ECS_TASK_DEFINITION: .github/ecs-task-definition.json
-  CONTAINER_NAME: subtitle-generator-container
+  CONTAINER_NAME: subtitle-generator-worker
 
 jobs:
   deploy:

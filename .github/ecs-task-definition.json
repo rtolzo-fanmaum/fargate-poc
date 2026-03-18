@@ -8,7 +8,7 @@
   "taskRoleArn": "arn:aws:iam::533267392768:role/subtitle-generator-ecs-task-role",
   "containerDefinitions": [
     {
-      "name": "subtitle-generator-container",
+      "name": "subtitle-generator-worker",
       "image": "533267392768.dkr.ecr.ap-northeast-2.amazonaws.com/subtitle-generator:latest",
       "essential": true,
       "environment": [
