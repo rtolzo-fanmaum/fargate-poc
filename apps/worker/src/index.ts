@@ -1,14 +1,12 @@
 import { existsSync, unlinkSync } from "node:fs";
+import type { Segment } from "@vtt/types";
 import { toMp3 } from "./ffmpeg.js";
 import { toVtt } from "./format.js";
 import { downloadFromS3, uploadToS3 } from "./s3.js";
 import { transcribe } from "./transcribe.js";
 import { detectFirstSpeech } from "./vad.js";
 
-function applyVadOffset(
-  segments: Array<{ start: number; end: number; text: string }>,
-  vadOffset: number
-) {
+function applyVadOffset(segments: Segment[], vadOffset: number) {
   if (!segments.length || vadOffset <= 0) {
     return segments;
   }

@@ -21,12 +21,7 @@ export async function transcribe(audioPath: string): Promise<{ segments: Segment
     response_format: "verbose_json"
   })) as WhisperVerboseResponse;
 
-  const segments =
-    response.segments?.map((segment) => ({
-      start: segment.start,
-      end: segment.end,
-      text: segment.text
-    })) ?? [];
+  const segments: Segment[] = response.segments ?? [];
 
   return { segments };
 }

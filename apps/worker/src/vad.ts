@@ -27,15 +27,13 @@ export async function detectFirstSpeech(inputPath: string) {
     });
 
     for await (const segment of vad.run(audio, 16000)) {
-      if (segment.start >= 0) {
-        const firstSpeech = segment.start / 1000;
-        console.log("[worker] VAD detected first speech", {
-          firstSpeech,
-          sampleRate: 16000,
-          samples: audio.length
-        });
-        return firstSpeech;
-      }
+      const firstSpeech = segment.start / 1000;
+      console.log("[worker] VAD detected first speech", {
+        firstSpeech,
+        sampleRate: 16000,
+        samples: audio.length
+      });
+      return firstSpeech;
     }
 
     console.log("[worker] VAD found no speech segment");
