@@ -4,12 +4,12 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "1024",
   "memory": "2048",
-  "executionRoleArn": "arn:aws:iam::525051404132:role/subtitle-generator-ecs-execution-role",
-  "taskRoleArn": "arn:aws:iam::525051404132:role/subtitle-generator-ecs-task-role",
+  "executionRoleArn": "arn:aws:iam::533267392768:role/subtitle-generator-ecs-execution-role",
+  "taskRoleArn": "arn:aws:iam::533267392768:role/subtitle-generator-ecs-task-role",
   "containerDefinitions": [
     {
       "name": "subtitle-generator-container",
-      "image": "525051404132.dkr.ecr.ap-northeast-2.amazonaws.com/subtitle-generator:latest",
+      "image": "533267392768.dkr.ecr.ap-northeast-2.amazonaws.com/subtitle-generator:latest",
       "essential": true,
       "environment": [
         {
